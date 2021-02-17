@@ -15,14 +15,22 @@ require:
 - plugin: katello
 ￼ version: 3.9.0
 -%>
-<%- report_headers 'Name', 'Field1', 'Field2', 'Field3', 'Field4' -%>
+<%- report_headers 'System Name', 'Field1', 'Field2', 'Field3', 'Field4', 'Field5', 'Field6', 'Field7', 'Field8', 'Field9', 'Field10', 'Field11', 'Field12' -%>
 <%- load_hosts(search: input('Hosts filter')).each_record do |host| -%>
 <%-   report_row(
-        'Name': host.name,
+        'System Name': host.name,
         'Field1': host.params['Field1'],
         'Field2': host.params['Field2'],
         'Field3': host.params['Field3'],
-        'Field4': host.params['Field4']
+        'Field4': host.params['Field4'],
+        'Field5': host.params['Field5'],
+        'Field6': host.params['Field6'],
+        'Field7': host.params['Field7'],
+        'Field8': host.params['Field8'],
+        'Field9': host.params['Field9'],
+        'Field10': host.params['Field10'],
+        'Field11': host.params['Field11'],
+        'Field12': host.params['Field12']
       ) -%>
 <%- end -%>
 <%= report_render -%>
