@@ -1,0 +1,28 @@
+<%#
+name: Host - Parameters Report
+snippet: false
+template_inputs:
+- name: Hosts filter
+  required: false
+  input_type: user
+  description: Limit the report only on hosts found by this search query. Keep empty
+    for report on all available hosts.
+  advanced: false
+  value_type: search
+  resource_type: Host
+model: ReportTemplate
+require:
+- plugin: katello
+￼ version: 3.9.0
+-%>
+<%- report_headers 'Name', 'Field1', 'Field2', 'Field3', 'Field4' -%>
+<%- load_hosts(search: input('Hosts filter')).each_record do |host| -%>
+<%-   report_row(
+        'Name': host.name,
+        'Field1': host.params['Field1'],
+        'Field2': host.params['Field2'],
+        'Field3': host.params['Field3'],
+        'Field4': host.params['Field4']
+      ) -%>
+<%- end -%>
+<%= report_render -%>
